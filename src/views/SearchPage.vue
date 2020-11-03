@@ -55,6 +55,10 @@ export default {
 
   name: 'SearchPage',
 
+  beforeCreate() {
+    this.$store.dispatch("FETCH_ROOMS");
+  },
+
   computed: {
     ...mapGetters(["rooms"]),
   },
