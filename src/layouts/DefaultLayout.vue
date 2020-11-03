@@ -41,15 +41,20 @@
         <div class="mb-4">
           <label class="input__label">Email</label>
           <div class="form__field relative">
-            <input class="input__field" type="text" placeholder="bruce_wayne@imnotbatman.org">
+            <input v-model="formLogin.email" class="input__field" type="text" placeholder="bruce_wayne@imnotbatman.org">
           </div>
         </div>
 
         <div class="mb-4">
           <label class="input__label">Password</label>
           <div class="form__field relative">
-            <input class="input__field" type="password" placeholder="***********">
+            <input v-model="formLogin.password" class="input__field" type="password" placeholder="***********">
           </div>
+        </div>
+
+        <div class="mb-4">
+          <toggle-input v-model="formLogin.rememberMe"></toggle-input>
+          Remember Me
         </div>
 
         <div class="mb-4">
@@ -94,30 +99,42 @@
 import HeaderPartial from '@/partials/HeaderPartial.vue';
 import FooterPartial from '@/partials/FooterPartial.vue';
 import Modal from '@/components/Modal.vue';
-import { mapGetters } from "vuex";
+import ToggleInput from '@/components/ToggleInput.vue';
+import { mapGetters } from 'vuex';
 
 export default {
 
   name: 'DefaultLayout',
 
+  data() {
+    return {
+      formLogin: {
+        email: '',
+        password: '',
+        rememberMe: false,
+      },
+    };
+  },
+
   computed: {
-    ...mapGetters(["modals"]),
+    ...mapGetters(['modals']),
   },
 
   components: {
     HeaderPartial,
     FooterPartial,
     Modal,
+    ToggleInput,
   },
-  
+
   methods: {
 
     closeModal(modalName) {
-      this.$store.dispatch("TOGGLE_MODAL_STATE", {
+      this.$store.dispatch('TOGGLE_MODAL_STATE', {
         name: modalName,
-        value: false
+        value: false,
       });
-    }
+    },
 
   },
 

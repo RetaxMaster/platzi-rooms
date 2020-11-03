@@ -8,25 +8,21 @@ export default new Vuex.Store({
     user: null,
     modals: {
       login: false,
-      register: false
+      register: false,
     },
   },
   mutations: {
 
     SET_MODAL_STATE: (state, { name, value }) => {
-
       state.modals[name] = value;
+    },
 
-    }
-    
   },
   actions: {
 
     TOGGLE_MODAL_STATE: ({ commit }, { name, value }) => {
-
-      commit("SET_MODAL_STATE", { name, value });
-
-    }
+      commit('SET_MODAL_STATE', { name, value });
+    },
 
   },
   getters: {

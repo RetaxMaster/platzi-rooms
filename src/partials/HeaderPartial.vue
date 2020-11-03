@@ -47,15 +47,15 @@ export default {
   },
   methods: {
     getLogin() {
-      this.$store.dispatch("TOGGLE_MODAL_STATE", {
-        name: "login",
-        value: true
+      this.$store.dispatch('TOGGLE_MODAL_STATE', {
+        name: 'login',
+        value: true,
       });
     },
     signUp() {
-      this.$store.dispatch("TOGGLE_MODAL_STATE", {
-        name: "register",
-        value: true
+      this.$store.dispatch('TOGGLE_MODAL_STATE', {
+        name: 'register',
+        value: true,
       });
     },
   },

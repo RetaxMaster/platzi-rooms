@@ -1,18 +1,17 @@
 <script>
 export default {
 
-    name: "Modal",
+  name: 'Modal',
 
-    props: {
-        show: {
-            type: Boolean,
-            default: false,
-        },
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
     },
+  },
 
-    render() {
-
-        return this.show ? <div class="modal-wrapper">
+  render() {
+    return this.show ? <div class="modal-wrapper">
             <div class="modal">
 
                 <div class="modal-head text-right pb-2">
@@ -27,18 +26,17 @@ export default {
 
             </div>
         </div> : null;
+  },
 
+  methods: {
+
+    onClose() {
+      this.$emit('close-modal');
     },
 
-    methods: {
+  },
 
-        onClose() {
-            this.$emit("close-modal");
-        }
-
-    },
-
-}
+};
 </script>
 
 <style scoped>
