@@ -36,7 +36,7 @@
 
       <h2 class="text-grey-darkest font-semibold text-center mb-6">Welcome to Platzi Rooms</h2>
 
-      <form action="">
+      <form @submit.prevent="loginHandlerSubmit">
 
         <div class="mb-4">
           <label class="input__label">Email</label>
@@ -69,19 +69,26 @@
 
       <h2 class="text-grey-darkest font-semibold text-center mb-6">Register in Platzi Rooms</h2>
 
-      <form action="">
+      <form action="" @submit.prevent="registerHandlerSubmit">
 
         <div class="mb-4">
           <label class="input__label">Email</label>
           <div class="form__field relative">
-            <input class="input__field" type="text" placeholder="bruce_wayne@imnotbatman.org">
+            <input v-model="formRegister.email" class="input__field" type="text" placeholder="bruce_wayne@imnotbatman.org">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="input__label">Nombre</label>
+          <div class="form__field relative">
+            <input v-model="formRegister.name" class="input__field" type="text" placeholder="Carlos">
           </div>
         </div>
 
         <div class="mb-4">
           <label class="input__label">Password</label>
           <div class="form__field relative">
-            <input class="input__field" type="password" placeholder="***********">
+            <input v-model="formRegister.password" class="input__field" type="password" placeholder="***********">
           </div>
         </div>
 
@@ -113,6 +120,11 @@ export default {
         password: '',
         rememberMe: false,
       },
+      formRegister: {
+        email: "",
+        name: "",
+        password: "",
+      },
     };
   },
 
@@ -134,6 +146,25 @@ export default {
         name: modalName,
         value: false,
       });
+    },
+
+    registerHandlerSubmit() {
+
+      this.$store.dispatch("CREATE_USER", this.formRegister).then(() => {
+          this.closeModal("register");
+      });
+
+    },
+
+    loginHandlerSubmit() {
+
+      this.$store.dispatch("SIGN_IN", {
+        email: this.formLogin.email,
+        password: this.formLogin.password
+      }).then(() => {
+        this.closeModal("login");
+      });
+
     },
 
   },
